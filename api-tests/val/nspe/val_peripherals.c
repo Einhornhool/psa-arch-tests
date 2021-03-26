@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 **/
-
 #include "val_peripherals.h"
 #include "val_target.h"
 #include "pal_interfaces_ns.h"
@@ -175,6 +174,8 @@ val_status_t val_wd_reprogram_timer(wd_timeout_type_t timeout_type)
     {
         return status;
     }
+#else
+    (void) timeout_type;
 #endif
 
     return status;

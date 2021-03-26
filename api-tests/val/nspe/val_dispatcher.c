@@ -36,8 +36,10 @@ addr_t          g_test_info_addr;
 static void val_print_api_version(void)
 {
 #ifdef CRYPTO
-    val_print(PRINT_ALWAYS, " %d.", PSA_CRYPTO_API_VERSION_MAJOR);
-    val_print(PRINT_ALWAYS, "%d", PSA_CRYPTO_API_VERSION_MINOR);
+    // val_print(PRINT_ALWAYS, " %d.", PSA_CRYPTO_API_VERSION_MAJOR);
+    // val_print(PRINT_ALWAYS, "%d", PSA_CRYPTO_API_VERSION_MINOR);
+    printf(" %d.", PSA_CRYPTO_API_VERSION_MAJOR);
+    printf("%d", PSA_CRYPTO_API_VERSION_MINOR);
 #endif
 #ifdef INTERNAL_TRUSTED_STORAGE
     val_print(PRINT_ALWAYS, " %d.", PSA_ITS_API_VERSION_MAJOR);

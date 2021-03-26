@@ -261,19 +261,22 @@
 //#define ARCH_TEST_MD4
 //#define ARCH_TEST_MD5
 //#define ARCH_TEST_RIPEMD160
-//#define ARCH_TEST_SHA1
-#ifndef TF_M_PROFILE_SMALL
-#define ARCH_TEST_SHA224
-#endif
+#define ARCH_TEST_SHA1
+// #define MODULE_HASHES_SW_SHA1
+// #ifndef TF_M_PROFILE_SMALL
+// #define ARCH_TEST_SHA224
+// #endif
 #define ARCH_TEST_SHA256
-#ifndef TF_M_PROFILE_SMALL
-#ifndef TF_M_PROFILE_MEDIUM
-#define ARCH_TEST_SHA384
-#define ARCH_TEST_SHA512
-#endif
-#endif
+// #define MODULE_HASHES_SW_SHA256
+
+// #ifndef TF_M_PROFILE_SMALL
+// #ifndef TF_M_PROFILE_MEDIUM
+// #define ARCH_TEST_SHA384
+// #define ARCH_TEST_SHA512
+// #endif
+// #endif
 //#define ARCH_TEST_SHA512_224
-//#define ARCH_TEST_SHA512_256
+// #define ARCH_TEST_SHA512_256
 //#define ARCH_TEST_SHA3_224
 //#define ARCH_TEST_SHA3_256
 //#define ARCH_TEST_SHA3_384

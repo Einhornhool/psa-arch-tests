@@ -26,7 +26,7 @@
 #if !defined(PSA_CMAKE_BUILD)
 
 /* Print verbosity = TEST */
-#define VERBOSE 1
+#define VERBOSE 3
 
 /* NSPE or SPE VAL build? */
 #define VAL_NSPE_BUILD
