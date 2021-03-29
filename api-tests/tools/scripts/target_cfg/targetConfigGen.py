@@ -113,7 +113,7 @@ def generate_source():
 
 			""" Start pushing fprintf into the source resposible for generating the database table """
 			o_f.write("\tuint32_t *word_ptr;\n")
-			o_f.write("\tint      byte_no  = 0;\n")
+			o_f.write("\tunsigned int      byte_no  = 0;\n")
 			o_f.write("\tFILE     *fp;\n\n")
 			o_f.write("\tfp = fopen(\"%s\", \"w\");\n\n" %(out_database))
 			temp_out_file = out_database
@@ -151,19 +151,19 @@ def generate_source():
 			o_f.write("\tfprintf(fp, \"%x\", \'F\');\n")
 			o_f.write("\tfprintf(fp, \"%x,\\n\", \'G\');\n")
 			o_f.write("\tuint32_t version = 1;\n")
-			o_f.write("\tfprintf(fp, \"0x%08x,\\n\", version);\n")
+			o_f.write("\tfprintf(fp, \"0x%08lx,\\n\", version);\n")
 			o_f.write("\tuint32_t total_size = 0;\n")
 			for group in unique_major_groups:
 				o_f.write("\ttotal_size += group_%s.cfg_type.size;\n" %(group.lower()))
 			o_f.write("\ttotal_size += (8 + 8 + 4 + 4);\n")
-			o_f.write("\tfprintf(fp, \"0x%08x,\\n\", total_size);\n")
+			o_f.write("\tfprintf(fp, \"0x%08lx,\\n\", total_size);\n")
 
 			""" Start writing component values to database file """
 			for group in unique_major_groups:
 				o_f.write("\t/* Writing major group details to the file */\n")
 				o_f.write("\tword_ptr = (uint32_t *)&group_%s;\n" %(group.lower()))
 				o_f.write("\tfor(byte_no=0; byte_no<sizeof(group_%s); byte_no += 4) {\n" %(group.lower()))
-				o_f.write("\t\tfprintf(fp, \"0x%08x,\\n\", *word_ptr);\n")
+				o_f.write("\t\tfprintf(fp, \"0x%08lx,\\n\", *word_ptr);\n")
 				o_f.write("\t\tword_ptr++;\n")
 				o_f.write("\t}\n")
 				o_f.write("\t/* Writing minor group details to the file */\n")
@@ -171,7 +171,7 @@ def generate_source():
 					if group == minor_major_map[minor]:
 						o_f.write("\tword_ptr = (uint32_t *)&%s[0];\n" %(minor.lower()))
 						o_f.write("\tfor(byte_no=0; byte_no<sizeof(%s); byte_no += 4) {\n" %(minor.lower()))
-						o_f.write("\t\tfprintf(fp, \"0x%08x,\\n\", *word_ptr);\n")
+						o_f.write("\t\tfprintf(fp, \"0x%08lx,\\n\", *word_ptr);\n")
 						o_f.write("\t\tword_ptr++;\n")
 						o_f.write("\t}\n")
 			o_f.write("\tfprintf(fp, \"0x%08x\\n\", 0xffffffff);\n")
